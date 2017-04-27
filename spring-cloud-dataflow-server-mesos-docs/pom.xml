@@ -134,7 +134,7 @@
 											</fileset>
 										</copy>
 										<copy todir="${basedir}/target/contents/reference/htmlsingle/images">
-										        <fileset dir="${basedir}/target/generated-docs/images" />
+											<fileset dir="${basedir}/target/generated-docs/images" />
 										</copy>
 										<copy todir="${basedir}/target/contents/reference/htmlsingle/css">
 											<fileset dir="${basedir}/src/main/docbook/css" />
