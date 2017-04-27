@@ -1,5 +1,25 @@
 FROM java:8-alpine
+#===============================================================================
+# Copy spring cloud dataflow mesos jar
+#===============================================================================
 COPY target/spring-cloud-dataflow-server-mesos-1.1.0.BUILD-SNAPSHOT.jar spring-cloud-dataflow-server-mesos.jar"
+#===============================================================================
+# Download the postgres jdbc driver
+#===============================================================================
+ADD lib/postgresql-42.0.0.jre6.jar postgresql-42.0.0.jre6.jar
+
+#===============================================================================
+# Add starter
+#===============================================================================
+ADD start.sh start.sh
+
+
+#===============================================================================
+# Open ports for dataflowserver, redis, kafka, zookeeper
+#===============================================================================
+EXPOSE 9393 9394 2181 9092 6379 8761 8082
+CMD ["./start.sh"]
+
 VOLUME ["/tmp"]
 EXPOSE 9393
-ENTRYPOINT ["java","-jar","spring-cloud-dataflow-server-mesos.jar"]
+CMD ["./start.sh"]
